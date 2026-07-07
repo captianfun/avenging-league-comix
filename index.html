@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Avenging League Comix</title>
+        <style>
+            body {
+                margin: 0px;
+                overflow-x: hidden;
+                transition: background-color 1s ease-in, color 1s ease-in;
+            }
+            
+            * {
+                font-family:"comic sans ms", "comic sans", sans-serif;
+            }
+            
+            #nav {
+                z-index:5;
+                top: 0px;
+                display: flex;
+                padding: 5px;
+                position: fixed;
+                height: 45px;
+                width: 100%;
+                gap: 141px;
+                transition: background-color 1s ease-in, border-color 1s ease-in;
+            }
+            
+            #nav button, #nav select {
+                border-radius: 8px;
+                transition: background-color 1s ease-in, color 1s ease-in;       
+            }
+            
+            @keyframes pop { 0% { transform:scale(1); } 25% { transform:scale(1.2); } 50% { transform:scale(1); } 75% { transform:scale(0.8); } 100% { transform:scale(1); } }
+            
+            #nav button:hover, #nav select:hover {
+                animation:pop 0.6s ease-in-out;
+            }
+            
+            #heading {
+                margin-top:65px;
+                text-align:center;
+                transform:rotate(-3deg);
+            }
+            
+            .card {
+                width:271px;
+                height:288px;
+                border:3px solid #000000;
+                background-color:#FFDE4D;
+                color:black;
+                border-radius:8px;
+                padding:10px;
+            }
+            
+            .card h3 {
+                text-align:center;
+            }
+            
+            .card-contain {
+                display: flex;
+                justify-content: space-between;
+            }
+            
+            #one {
+                margin-bottom:10%;
+            }
+            
+            div[id*="data"] {
+                padding:10px;
+            }
+            
+            body.vision {
+                background-color:blue;
+                color:white;
+            }
+            
+            body.vision #nav {
+                background-color:red;
+                border-bottom:2px solid purple;
+            }
+            
+            body.vision #nav button, body.vision #nav select {
+                border:2px solid brown;
+                background-color:red;
+                color:white;
+            }
+            
+            body.cap {
+                background-color:lime;
+                color:black;
+            }
+            
+            body.cap #nav {
+                border-bottom:2px solid green;
+            }
+            
+            body.cap #nav button, body.cap #nav select {
+                border:2px solid purple;
+            }
+            
+            body.cap #nav, body.cap #nav button, body.cap #nav select {
+                background-color:#DB22FB;
+            }
+            
+            body.widow {
+                background-color:rgb(66, 66, 66);
+                color:white;
+            }
+            
+            body.widow #nav {
+                border-bottom:2px solid orange;
+            }
+            
+            body.widow #nav button, body.widow #nav select {
+                border:2px solid orange;
+            }
+            
+            body.widow #nav, body.widow #nav button, body.widow #nav select {
+                background-color:gold;
+                color:black;
+            }
+        </style>
+    </head>
+    <body class = "vision">
+        <div id = "nav">
+            <button>Home</button>
+            <button>Characters</button>
+            <select>
+                <option value = "vision">Theme: Supervision</option>
+                <option value = "cap">Theme: Captain Hulk</option>
+                <option value = "widow">Theme: Wonder Widow</option>
+            </select>
+        </div>
+        <h1 id = "heading">Avenging League Comix</h1>
+        <div id = "home-data">
+            <p>Hello! Welcome to Avenging League Comix.</p>
+            <p>This whole thing started one day when I decided to make my own comic with my best freind. Then I made more and more, and created a universe.</p>
+            <p>These comics were sold at a comic sale in Vancouver. After that, I had other interests. Then I decided to stop...</p>
+            <p>Until Stickman. That was just a short bit of comic with no evident plotline and no words at all. But I got back into the comic-making biz, and I went back to Avenging League.</p>
+            <p>I hope you enjoy this website!</p>
+        </div>
+        <div id = "chara-data" style = "display:none;">
+            <div class = "card-contain" id = "one">
+                <div class = "card">
+                    <h3>Supervision</h3>
+                    <ul>
+                        <li><p>Strengths: Laser crystal, superstrenth, can fly, leader of the Avenging League</p></li>
+                        <li><p>Weakness: Isn't invincible</p></li>
+                    </ul>
+                </div>
+                <div class = "card">
+                    <h3>Wonderwidow</h3>
+                    <ul>
+                        <li><p>Strengths: Lasso of truth, good at martial arts, very fast and smart</p></li>
+                        <li><p>Weakness: Only mortal</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class = "card-contain">
+                <div class = "card">
+                    <h3>Captain Hulk</h3>
+                    <ul>
+                        <li><p>Strengths: Superstrength, can jump high, huge</p></li>
+                        <li><p>Weakness: not very smart</p></li>
+                    </ul>
+                </div>
+                <div class = "card">
+                    <h3>Captain Iron</h3>
+                    <ul>
+                        <li><p>Strength: His suit. It's super strong and he can fly in it</p></li>
+                        <li><p>Weakness: His suit can be broken, and then he's just a regular guy</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script>
+          const switcher = document.querySelector("#nav select");
+          
+          const switchTheme = () => {
+              document.body.className = switcher.value;
+          };
+          
+          switcher.addEventListener("change", switchTheme);
+          
+          const closeAll = () => {
+              document.getElementById("home-data").style.display = "none";
+              document.getElementById("chara-data").style.display = "none";
+          };
+          
+          const btns = document.querySelectorAll("#nav button");
+          
+          const openHome = () => {
+              closeAll();
+              document.getElementById("home-data").style.display = "block";
+          };
+          btns[0].addEventListener("click", openHome);
+          
+          const openChara = () => {
+              closeAll();
+              document.getElementById("chara-data").style.display = "block";
+          };
+          btns[1].addEventListener("click", openChara);
+      </script>
+    </body>
+</html>
